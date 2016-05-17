@@ -18,9 +18,11 @@ public class Cliente extends Pessoa {
     }
     
 //------------------Métodos----------------//
-    public void pagaContaPessoal() {
-        this.capital -= this.getContaPessoal();
-        this.estabelicimento.recebePagamento(getContaPessoal());
+    public void pagaContaPessoal(Data dataAtual) {
+        if(!this.verificaAniversario(dataAtual)){
+            this.capital -= this.getContaPessoal();
+            this.estabelicimento.recebePagamento(getContaPessoal());
+        }
         contaPessoal = 0;
     }
     public void pagaContaDaMesa (double conta) {
@@ -39,6 +41,12 @@ public class Cliente extends Pessoa {
     }
     public double getContaPessoal() {
         return contaPessoal;
+    }
+    public boolean verificaAniversario(Data dataAtual){
+        if(this.dataDeNascimento.getDia() == dataAtual.getDia() && this.dataDeNascimento.getMes() == dataAtual.getMes()){
+            return true;
+        }
+        else return false;
     }
     
 }

@@ -9,9 +9,16 @@ public class Hora {
     
 //----------------Construtor--------------//
     Hora(int horas, int minutos, int segundos){
-        this.horas = horas;
-        this.minutos = minutos;
-        this.segundos = segundos;
+        if(this.validaHora(horas, minutos, segundos)){
+            this.horas = horas;
+            this.minutos = minutos;
+            this.segundos = segundos;
+        }
+        else {
+            this.horas = 0;
+            this.minutos = 0;
+            this.segundos = 0;
+        }
     }
     
 //---------------Métodos------------------//
@@ -30,5 +37,10 @@ public class Hora {
     public void printHoraf(){
         System.out.printf("%d/%d/%d",this.horas, this.minutos, this.segundos);
     }
-    
+    public boolean validaHora (int horas, int minutos, int segundos){
+        if(horas<24 && horas>=0 && minutos<60 && minutos>=0 && segundos<60 && segundos>=0){
+            return true;
+        }
+        else return false;
+    } 
 }
