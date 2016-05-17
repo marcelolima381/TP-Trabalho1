@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="rastaurant">
+  <ClassDiagramComponents>
+    <Class name="Restaurante" package="" visibility="public" xPosition="667.0" yPosition="10.0">
+      <Fields>
+        <Field name="mesas" type="Mesa[]" visibility="private"/>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="cnpj" type="String" visibility="private"/>
+        <Field name="crew" type="Funcionario[]" visibility="private"/>
+        <Field name="pedidos" type="Prato[]" visibility="private"/>
+        <Field name="capital" type="double" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPrato" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Pessoa" package="" visibility="public" xPosition="477.0" yPosition="169.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="protected"/>
+        <Field name="cpf" type="String" visibility="protected"/>
+        <Field name="idade" type="int" visibility="protected"/>
+        <Field name="dataDeNascimento" type="Data" visibility="protected"/>
+        <Field name="capital" type="double" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Cliente" package="" visibility="public" xPosition="361.0" yPosition="384.0">
+      <Fields>
+        <Field name="contaPessoal" type="double" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="pagaContaPessoal" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Funcionario" package="" visibility="public" isAbstract="true" xPosition="579.0" yPosition="384.0">
+      <Fields>
+        <Field name="horarioDeChegada" type="Hora" visibility="protected"/>
+        <Field name="horarioDeSaida" type="Hora" visibility="protected"/>
+        <Field name="salario" type="double" visibility="protected"/>
+        <Field name="codigoDeFuncionario" type="int" visibility="protected" isStatic="true"/>
+        <Field name="empregador" type="Restaurante" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Gerente" package="" visibility="public" xPosition="361.0" yPosition="612.0">
+      <Fields>
+        <Field name="senhaDoSistema" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="bonificacao" returnType="void" visibility="public"/>
+        <Method name="pagamento" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Cozinheiro" package="" visibility="public" xPosition="600.0" yPosition="664.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="bonificacao" returnType="void" visibility="public"/>
+        <Method name="prepararPratos" returnType="void" visibility="public"/>
+        <Method name="pagamento" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Garçon" package="" visibility="public" xPosition="854.0" yPosition="612.0">
+      <Fields>
+        <Field name="atendendo" type="Mesa[]" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="bonificacao" returnType="void" visibility="public"/>
+        <Method name="novoPedido" returnType="void" visibility="public"/>
+        <Method name="pagamento" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Mesa" package="" visibility="public" xPosition="277.0" yPosition="10.0">
+      <Fields>
+        <Field name="clientes" type="Cliente[]" visibility="private"/>
+        <Field name="lugares" type="int" visibility="private"/>
+        <Field name="contaDaMesa" type="double" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="clienteAcomodado" returnType="void" visibility="public"/>
+        <Method name="clienteVazou" returnType="void" visibility="public"/>
+        <Method name="pagaContaDaMesa" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Hora" package="" visibility="public" xPosition="864.0" yPosition="188.0">
+      <Fields>
+        <Field name="horas" type="int" visibility="private"/>
+        <Field name="minutos" type="int" visibility="private"/>
+        <Field name="segundos" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Data" package="" visibility="public" xPosition="48.0" yPosition="183.0">
+      <Fields>
+        <Field name="dia" type="int" visibility="private"/>
+        <Field name="mes" type="int" visibility="private"/>
+        <Field name="ano" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Interface name="FuncionarioRemunerado" package="" visibility="public" xPosition="937.0" yPosition="418.0">
+      <Methods>
+        <Method name="pagamento" returnType="void" visibility="public"/>
+        <Method name="bonificacao" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Class name="Prato" package="" visibility="public" xPosition="937.0" yPosition="10.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="ingredientes" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="Comporta" source="Mesa" target="Cliente" type="Composition" sourceCardinality="0..1" targetCardinality="0..*" collectionType="ArrayList"/>
+    <IsRelation name="is" source="Garçon" target="Funcionario"/>
+    <HasRelation name="Chega às" source="Funcionario" target="Hora" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Funcionario" target="FuncionarioRemunerado"/>
+    <HasRelation name="Tem" source="Restaurante" target="Funcionario" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <IsRelation name="is" source="Gerente" target="Funcionario"/>
+    <IsRelation name="is" source="Cozinheiro" target="Funcionario"/>
+    <HasRelation name="Nasceu em" source="Pessoa" target="Data" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tem" source="Restaurante" target="Mesa" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <IsRelation name="is" source="Funcionario" target="Pessoa"/>
+    <IsRelation name="is" source="Cliente" target="Pessoa"/>
+    <HasRelation name="Prepara" source="Restaurante" target="Prato" type="Default" sourceCardinality="0..1" targetCardinality="0..*" collectionType="List"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
