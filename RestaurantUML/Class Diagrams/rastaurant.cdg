@@ -27,7 +27,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Cliente" package="" visibility="public" xPosition="361.0" yPosition="384.0">
+    <Class name="Cliente" package="" visibility="public" xPosition="315.0" yPosition="418.0">
       <Fields>
         <Field name="contaPessoal" type="double" visibility="private"/>
       </Fields>
@@ -108,12 +108,6 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Interface name="FuncionarioRemunerado" package="" visibility="public" xPosition="937.0" yPosition="418.0">
-      <Methods>
-        <Method name="pagamento" returnType="void" visibility="public"/>
-        <Method name="bonificacao" returnType="void" visibility="public"/>
-      </Methods>
-    </Interface>
     <Class name="Prato" package="" visibility="public" xPosition="937.0" yPosition="10.0">
       <Fields>
         <Field name="nome" type="String" visibility="private"/>
@@ -122,19 +116,59 @@
       <Constructors/>
       <Methods/>
     </Class>
+    <Interface name="FuncionarioRemunerado" package="" visibility="public" xPosition="937.0" yPosition="418.0">
+      <Methods>
+        <Method name="pagamento" returnType="void" visibility="public"/>
+        <Method name="bonificacao" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="UI_Cliente" package="" visibility="public" xPosition="88.0" yPosition="542.0">
+      <Methods>
+        <Method name="pegarMesa" returnType="void" visibility="public"/>
+        <Method name="fezerPedido" returnType="void" visibility="public"/>
+        <Method name="sair" returnType="void" visibility="public"/>
+        <Method name="fazerReclamacao" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="UI_Gerente" package="" visibility="public" xPosition="154.0" yPosition="815.0">
+      <Methods>
+        <Method name="autenticar" returnType="void" visibility="public"/>
+        <Method name="demiteFuncionario" returnType="void" visibility="public"/>
+        <Method name="contrataFuncionario" returnType="void" visibility="public"/>
+        <Method name="recebeReclamacao" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="UI_Cozinheiro" package="" visibility="public" xPosition="600.0" yPosition="879.0">
+      <Methods>
+        <Method name="prepararPrato" returnType="void" visibility="public"/>
+        <Method name="quitar" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="UI_Garcon" package="" visibility="public" xPosition="968.0" yPosition="834.0">
+      <Methods>
+        <Method name="entregarPrato" returnType="void" visibility="public"/>
+        <Method name="entregaConta" returnType="void" visibility="public"/>
+        <Method name="anotaPedidos" returnType="void" visibility="public"/>
+        <Method name="quita" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="Comporta" source="Mesa" target="Cliente" type="Composition" sourceCardinality="0..1" targetCardinality="0..*" collectionType="ArrayList"/>
-    <IsRelation name="is" source="Garçon" target="Funcionario"/>
-    <HasRelation name="Chega às" source="Funcionario" target="Hora" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Funcionario" target="FuncionarioRemunerado"/>
+    <HasRelation name="Prepara" source="Restaurante" target="Prato" type="Default" sourceCardinality="0..1" targetCardinality="0..*" collectionType="List"/>
+    <IsRelation name="is" source="Cliente" target="Pessoa"/>
     <HasRelation name="Tem" source="Restaurante" target="Funcionario" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
-    <IsRelation name="is" source="Gerente" target="Funcionario"/>
     <IsRelation name="is" source="Cozinheiro" target="Funcionario"/>
     <HasRelation name="Nasceu em" source="Pessoa" target="Data" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="Tem" source="Restaurante" target="Mesa" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Cliente" target="UI_Cliente"/>
+    <HasRelation name="Comporta" source="Mesa" target="Cliente" type="Composition" sourceCardinality="0..1" targetCardinality="0..*" collectionType="ArrayList"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Cozinheiro" target="UI_Cozinheiro"/>
+    <HasRelation name="Chega às" source="Funcionario" target="Hora" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Gerente" target="Funcionario"/>
     <IsRelation name="is" source="Funcionario" target="Pessoa"/>
-    <IsRelation name="is" source="Cliente" target="Pessoa"/>
-    <HasRelation name="Prepara" source="Restaurante" target="Prato" type="Default" sourceCardinality="0..1" targetCardinality="0..*" collectionType="List"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Garçon" target="UI_Garcon"/>
+    <HasRelation name="Tem" source="Restaurante" target="Mesa" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <IsRelation name="is" source="Garçon" target="Funcionario"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Funcionario" target="FuncionarioRemunerado"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Gerente" target="UI_Gerente"/>
   </ClassDiagramRelations>
 </ClassDiagram>
