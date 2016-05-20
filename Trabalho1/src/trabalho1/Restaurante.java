@@ -62,4 +62,24 @@ public class Restaurante {
             novaLista[this.mesas.length] = novaMesa;
         }
     }
+    public void diaDePagamento (){
+        for(int i = 0; i < this.crew.length; i += 1){
+            this.crew[i].pagamento();
+        }
+    }
+    public void bonificacao(){
+        for(int i = 0; i < this.crew.length; i += 1){
+            this.crew[i].bonificacao();
+        }
+    }
+    public void addFuncionario(Funcionario novoFuncionario){
+        if(!(novoFuncionario instanceof Gerente)){
+            Funcionario[] novaLista = new Funcionario[this.crew.length+1];
+            for(int i = 0; i < this.crew.length; i += 1){
+                novaLista[i] = this.crew[i];
+            }
+            novaLista[this.crew.length] = novoFuncionario;
+        }
+        else System.out.println("Um novo gerente não pode ser contratado.");
+    }
 }

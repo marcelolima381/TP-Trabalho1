@@ -10,4 +10,7 @@ public class Gerente extends Funcionario {
     public void pagamento() {
         this.capital += this.salario;
     }
+    public void contrata(Funcionario novoFuncionario){
+        this.empregador.addFuncionario(novoFuncionario);
+    }
 }
